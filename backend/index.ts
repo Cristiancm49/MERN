@@ -13,7 +13,12 @@ const port = process.env.PORT || 8000;
 
 // Define the first Route of APP
 app.get('/', (req: Request, res: Response) => {
-    res.send('Welcome to my API Restful: Express + TS + Swagger + Mongoose');
+    res.send('Welcome to my API Restful: Express + TS + Nodemon + Jest + Swagger + Mongoose');
+})
+
+// Define the new Route of APP
+app.get('/hello',  (req: Request, res:Response) => {
+    res.send('Welcome to GET ROUTE: Hello bro')
 })
 
 // Execute APP and listen requests to PORT
