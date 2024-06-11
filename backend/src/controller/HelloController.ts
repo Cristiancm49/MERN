@@ -1,6 +1,6 @@
 import { BasicResponse } from "./types";
 import { IHelloController } from "./interfaces";
-import { LogSuccess } from "@/utils/logger";
+import { LogSuccess } from "../utils/logger";
 
 
 export class HelloController implements IHelloController {
@@ -9,7 +9,7 @@ export class HelloController implements IHelloController {
         LogSuccess('[/api/hello] get request');
 
         return {
-            message: `Hello ${name} || "Word!!!"`
+            message: `Hello ${name || "Word!!!"}`
         }
             
         

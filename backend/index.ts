@@ -1,27 +1,19 @@
-import express, { Express, Request, Response } from "express";
-import dovent from "dotenv";
-import { request } from "http";
-
-// Configuration the .env file
-dovent.config();
+import dotenv from 'dotenv';
+import server from './src/server';
+import { LogError, LogSuccess } from './src/utils/logger';
 
 
-// Create Express APP
-const app: Express = express();
+// Configuation the .env file
+dotenv.config();
+
 const port = process.env.PORT || 8000;
 
+// EXCECUTE SERVER
+server.listen(port, () => {
+    LogSuccess(`[SERVER ON]: Running in http://localhost:${port}/api`)
+});
 
-// Define the first Route of APP
-app.get('/', (req: Request, res: Response) => {
-    res.send('Welcome to my API Restful: Express + TS + Nodemon + Jest + Swagger + Mongoose');
-})
-
-// Define the new Route of APP
-app.get('/hello',  (req: Request, res:Response) => {
-    res.send('Welcome to GET ROUTE: Hello bro')
-})
-
-// Execute APP and listen requests to PORT
-app.listen(port, () => {
-    console.log(`EXPRESS SERVER: Running at  http://localhost:${port}`)
+// Control SERVER ERROR
+server.on('error', (error) => {
+    LogError(`[SERVER ERROR]: ${error}`)
 })
